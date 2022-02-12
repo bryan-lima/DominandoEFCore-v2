@@ -30,9 +30,6 @@ namespace DominandoEFCore.Migrations
                         .IsUnicode(false)
                         .HasColumnType("int");
 
-                    b.Property<string>("Telefone")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Pessoas");

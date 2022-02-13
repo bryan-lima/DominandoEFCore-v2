@@ -25,7 +25,10 @@ namespace DominandoEFCore
 
             List<Pessoa> _pessoas = db.Pessoas.ToList();
 
-            Console.WriteLine("Hello World!");
+            foreach (Pessoa pessoa in _pessoas)
+            {
+                Console.WriteLine($"Nome: {pessoa.Nome}");
+            }
         }
     }
 }

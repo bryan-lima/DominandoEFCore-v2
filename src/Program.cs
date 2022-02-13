@@ -15,6 +15,14 @@ namespace DominandoEFCore
 
             db.Database.EnsureCreated();
 
+            db.Pessoas.Add(new Pessoa 
+            {
+                Nome = "Teste",
+                Telefone = "11988887777"
+            });
+
+            db.SaveChanges();
+
             List<Pessoa> _pessoas = db.Pessoas.ToList();
 
             Console.WriteLine("Hello World!");

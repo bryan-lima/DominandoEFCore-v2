@@ -17,6 +17,7 @@ namespace DominandoEFCore
 
             db.Pessoas.Add(new Pessoa 
             {
+                Id = 1,
                 Nome = "Teste",
                 Telefone = "11988887777"
             });

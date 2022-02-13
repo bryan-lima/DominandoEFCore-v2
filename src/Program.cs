@@ -1,7 +1,9 @@
 ﻿using DominandoEFCore.Data;
+using DominandoEFCore.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DominandoEFCore
 {
@@ -10,16 +12,24 @@ namespace DominandoEFCore
         static void Main(string[] args)
         {
             using ApplicationContext db = new ApplicationContext();
-            //db.Database.Migrate();
 
-            IEnumerable<string> _migracoes = db.Database.GetPendingMigrations();
-            
-            foreach (string migracao in _migracoes)
+            db.Database.EnsureCreated();
+
+            db.Pessoas.Add(new Pessoa 
             {
-                Console.WriteLine(migracao);
-            }
+                Id = 1,
+                Nome = "Teste",
+                Telefone = "11988887777"
+            });
 
-            Console.WriteLine("Hello World!");
+            db.SaveChanges();
+
+            List<Pessoa> _pessoas = db.Pessoas.ToList();
+
+            foreach (Pessoa pessoa in _pessoas)
+            {
+                Console.WriteLine($"Nome: {pessoa.Nome}");
+            }
         }
     }
 }

@@ -22,7 +22,10 @@ namespace DominandoEFCore.Data
             optionsBuilder//.UseSqlServer(strConnectionSQLServer)
                           //.UseNpgsql(strConnectionPostgreSQL)
                           //.UseSqlite(strConnectionSQLite)
-                          .UseInMemoryDatabase(databaseName: "Teste-DominandoEFCoreV2")
+                          //.UseInMemoryDatabase(databaseName: "Teste-DominandoEFCoreV2")
+                          .UseCosmos("https://localhost:8081/",
+                                     "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==",
+                                     "DominandoEFCoreV2")
                           .LogTo(Console.WriteLine, LogLevel.Information)
                           .EnableSensitiveDataLogging();
         }
@@ -32,9 +35,12 @@ namespace DominandoEFCore.Data
             modelBuilder.Entity<Pessoa>(conf => 
             {
                 conf.HasKey(pessoa => pessoa.Id);
-                conf.Property(pessoa => pessoa.Nome)
-                    .HasMaxLength(60)
-                    .IsUnicode(false);
+                
+                conf.ToContainer("Pessoas");
+
+                //conf.Property(pessoa => pessoa.Nome)
+                //    .HasMaxLength(60)
+                //    .IsUnicode(false);
             });
         }
     }

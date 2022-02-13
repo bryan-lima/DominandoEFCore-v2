@@ -15,9 +15,11 @@ namespace DominandoEFCore.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            const string strConnection = "Data Source=DESKTOP-B76722G\\SQLEXPRESS; Initial Catalog=DominandoEFCoreV2; User ID=developer; Password=dev*10; Integrated Security=True; Persist Security Info=False; Pooling=False; MultipleActiveResultSets=False; Encrypt=False; Trusted_Connection=False";
+            //const string strConnection = "Data Source=DESKTOP-B76722G\\SQLEXPRESS; Initial Catalog=DominandoEFCoreV2; User ID=developer; Password=dev*10; Integrated Security=True; Persist Security Info=False; Pooling=False; MultipleActiveResultSets=False; Encrypt=False; Trusted_Connection=False";
+            const string strConnectionPostgreSQL = "Host=localhost; Database=DominandoEFCoreV2; Username=postgres; Password=123";
 
-            optionsBuilder.UseSqlServer(strConnection)
+            optionsBuilder//.UseSqlServer(strConnection)
+                          .UseNpgsql(strConnectionPostgreSQL)
                           .LogTo(Console.WriteLine, LogLevel.Information)
                           .EnableSensitiveDataLogging();
         }
